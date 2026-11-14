@@ -13,14 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Buat Organisasi Default
         $org = Organization::create([
-            'name'    => 'Himpunan Mahasiswa Informatika',
-            'balance' => 15450000, // Saldo awal sesuai mockup frontend
+            'name'    => 'Himpunan Mahasiswa Sastra Mesin',
+            'balance' => 15000, 
         ]);
 
         // 2. Akun Maker 
         User::create([
             'name'            => 'Auf Japri',
-            'email'           => 'bendahara@himtika.org',
+            'email'           => 'bendahara@sastramesin.org',
             'password'        => Hash::make('password123'),
             'role'            => 'maker',
             'organization_id' => $org->id,
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         // 3. Akun Checker
         User::create([
             'name'            => 'Mfik Kaaga',
-            'email'           => 'ketua@himtika.org',
+            'email'           => 'ketua@sastramesin.org',
             'password'        => Hash::make('password123'),
             'role'            => 'checker',
             'organization_id' => $org->id,
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         // 4. Akun Viewer
         User::create([
             'name'            => 'Rahmat Stang',
-            'email'           => 'antek@himtika.org',
+            'email'           => 'antek@sastramesin.org',
             'password'        => Hash::make('password123'),
             'role'            => 'viewer',
             'organization_id' => $org->id,
