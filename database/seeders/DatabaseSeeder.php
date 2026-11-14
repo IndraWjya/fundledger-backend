@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 2. Akun Maker 
-        User::create([
+        $maker = User::create([
             'name'            => 'Auf Japri',
             'email'           => 'bendahara@sastramesin.org',
             'password'        => Hash::make('password123'),
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 3. Akun Checker
-        User::create([
+        $checker = User::create([
             'name'            => 'Mfik Kaaga',
             'email'           => 'ketua@sastramesin.org',
             'password'        => Hash::make('password123'),
@@ -42,6 +42,55 @@ class DatabaseSeeder extends Seeder
             'password'        => Hash::make('password123'),
             'role'            => 'viewer',
             'organization_id' => $org->id,
+        ]);
+
+        // 5. Data Transaksi Awal Terverifikasi On-Chain
+        \App\Models\Transaction::create([
+            'organization_id' => $org->id,
+            'maker_id'        => $maker->id,
+            'checker_id'      => $checker->id,
+            'type'            => 'cash_in',
+            'category'        => 'Iuran Anggota',
+            'amount'          => 5000000,
+            'description'     => 'Iuran kas bulanan pengurus HIMASASIN periode Oktober 2026',
+            'status'          => 'completed',
+            'tx_hash'         => '0x8f2d8471c63b4f65c97ea875d9c221e289f66141a029c78d52187f58f553a1a4',
+        ]);
+
+        \App\Models\Transaction::create([
+            'organization_id' => $org->id,
+            'maker_id'        => $maker->id,
+            'checker_id'      => $checker->id,
+            'type'            => 'cash_in',
+            'category'        => 'Sponsorship',
+            'amount'          => 12000000,
+            'description'     => 'Dana sponsor utama Dies Natalis dari PT Tech Nusantara',
+            'status'          => 'completed',
+            'tx_hash'         => '0xb341907efc89d15c7e099a54a93c78d52187f58f553a1a45486d34bcf1201948',
+        ]);
+
+        \App\Models\Transaction::create([
+            'organization_id' => $org->id,
+            'maker_id'        => $maker->id,
+            'checker_id'      => $checker->id,
+            'type'            => 'cash_out',
+            'category'        => 'Perlengkapan',
+            'amount'          => 1500000,
+            'description'     => 'Pembelian sound system portable dan kabel roll untuk rapat akbar',
+            'status'          => 'completed',
+            'tx_hash'         => '0x4c29ea71c99182bb193a0021c78d52187f58f553a1a494726bf10927da558712',
+        ]);
+
+        \App\Models\Transaction::create([
+            'organization_id' => $org->id,
+            'maker_id'        => $maker->id,
+            'checker_id'      => null,
+            'type'            => 'cash_out',
+            'category'        => 'Operasional',
+            'amount'          => 1200000,
+            'description'     => 'Sewa ruang seminar gedung rektorat untuk Tech Talk #3',
+            'status'          => 'pending',
+            'tx_hash'         => null,
         ]);
     }
 }
