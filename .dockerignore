@@ -1,0 +1,8 @@
+node_modules
+vendor
+.git
+.env
+storage/*.key
+storage/logs/*
+!storage/logs/.gitignore
+tests
